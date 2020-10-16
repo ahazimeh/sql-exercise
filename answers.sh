@@ -16,6 +16,14 @@ CREATE TABLE "graduates" (
 	"Graduation"	TEXT,
 	PRIMARY KEY("ID" AUTOINCREMENT)
 );
-INSERT INTO graduates(name,Age,Gender,Points) select name,Age,Gender,Points FROM students WHERE name like 'layal'
-UPDATE graduates SET Graduation = '08/09/2018' WHERE name like 'Layal'
-DELETE FROM students WHERE name like 'Layal'
+1-INSERT INTO graduates(name,Age,Gender,Points) select name,Age,Gender,Points FROM students WHERE name like 'layal'
+2-UPDATE graduates SET Graduation = '08/09/2018' WHERE name like 'Layal'
+3-DELETE FROM students WHERE name like 'Layal'
+Joins
+1-SELECT e.name,e.company,date FROM employees as e JOIN companies as c on e.Company = c.Name
+2-
+    method1:SELECT name FROM employees WHERE Company in(SELECT name FROM companies WHERE date<2000)
+    method2:SELECT employees.name FROM employees JOIN companies on date<2000 AND employees.Company = companies.Name
+3-
+    method1:SELECT Company FROM employees WHERE Role like 'Graphic Designer' GROUP by Company HAVING employees.Company in(SELECT name FROM companies)
+    method2:SELECT Company FROM employees JOIN companies on employees.Company = companies.Name AND employees.Role like 'Graphic Designer' GROUP by Company
